@@ -376,7 +376,7 @@ export type TaskCreateInput = {
   order?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutTasksInput
+  user: Prisma.UserCreateNestedOneWithoutTaskInput
   goal?: Prisma.GoalCreateNestedOneWithoutTasksInput
   timeBlocks?: Prisma.TimeBlockCreateNestedManyWithoutTaskInput
   sessions?: Prisma.TaskSessionCreateNestedManyWithoutTaskInput
@@ -410,7 +410,7 @@ export type TaskUpdateInput = {
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutTasksNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutTaskNestedInput
   goal?: Prisma.GoalUpdateOneWithoutTasksNestedInput
   timeBlocks?: Prisma.TimeBlockUpdateManyWithoutTaskNestedInput
   sessions?: Prisma.TaskSessionUpdateManyWithoutTaskNestedInput
@@ -778,7 +778,7 @@ export type TaskCreateWithoutGoalInput = {
   order?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutTasksInput
+  user: Prisma.UserCreateNestedOneWithoutTaskInput
   timeBlocks?: Prisma.TimeBlockCreateNestedManyWithoutTaskInput
   sessions?: Prisma.TaskSessionCreateNestedManyWithoutTaskInput
 }
@@ -836,7 +836,7 @@ export type TaskCreateWithoutTimeBlocksInput = {
   order?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutTasksInput
+  user: Prisma.UserCreateNestedOneWithoutTaskInput
   goal?: Prisma.GoalCreateNestedOneWithoutTasksInput
   sessions?: Prisma.TaskSessionCreateNestedManyWithoutTaskInput
 }
@@ -884,7 +884,7 @@ export type TaskUpdateWithoutTimeBlocksInput = {
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutTasksNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutTaskNestedInput
   goal?: Prisma.GoalUpdateOneWithoutTasksNestedInput
   sessions?: Prisma.TaskSessionUpdateManyWithoutTaskNestedInput
 }
@@ -916,7 +916,7 @@ export type TaskCreateWithoutSessionsInput = {
   order?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutTasksInput
+  user: Prisma.UserCreateNestedOneWithoutTaskInput
   goal?: Prisma.GoalCreateNestedOneWithoutTasksInput
   timeBlocks?: Prisma.TimeBlockCreateNestedManyWithoutTaskInput
 }
@@ -964,7 +964,7 @@ export type TaskUpdateWithoutSessionsInput = {
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutTasksNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutTaskNestedInput
   goal?: Prisma.GoalUpdateOneWithoutTasksNestedInput
   timeBlocks?: Prisma.TimeBlockUpdateManyWithoutTaskNestedInput
 }
@@ -1070,7 +1070,7 @@ export type TaskUpdateWithoutGoalInput = {
   order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutTasksNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutTaskNestedInput
   timeBlocks?: Prisma.TimeBlockUpdateManyWithoutTaskNestedInput
   sessions?: Prisma.TaskSessionUpdateManyWithoutTaskNestedInput
 }

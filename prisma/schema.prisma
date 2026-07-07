@@ -46,6 +46,19 @@ enum RoutineFrequency {
   CUSTOM
 }
 
+enum GoalPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum GoalStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  PAUSED
+}
 //////////////////////////////////////////////////////
 // USER
 //////////////////////////////////////////////////////
@@ -54,34 +67,68 @@ model User {
   id        String   @id @default(cuid())
   name      String
   email     String?  @unique
+  vision    String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  goals        Goal[]
-  tasks        Task[]
-  routines     Routine[]
+  categories   Category[]
+  task         Task[]
   timeBlocks   TimeBlock[]
+  routines     Routine[]
   availability Availability[]
   aiContexts   AIContext[]
   settings     Settings?
 }
 
 //////////////////////////////////////////////////////
+// Category
+//////////////////////////////////////////////////////
+
+model Category {
+  id String @id @default(cuid())
+
+  name String
+
+  weeklyTargetHours Float
+
+  color String?
+
+  icon String?
+
+  isActive Boolean @default(true)
+
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  goals Goal[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+//////////////////////////////////////////////////////
 // GOALS
 //////////////////////////////////////////////////////
 
 model Goal {
-  id          String   @id @default(cuid())
 
-  title       String
+  id String @id @default(cuid())
+
+  title String
   description String?
 
-  targetDate  DateTime?
-  isActive    Boolean @default(true)
+  priority GoalPriority @default(MEDIUM)
 
-  userId String
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deadline DateTime?
+
+  status GoalStatus @default(NOT_STARTED)
+
+  isActive Boolean @default(true)
+
+  categoryId String
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   tasks Task[]
 
@@ -108,8 +155,7 @@ model Task {
   order Int?
 
   userId String
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   goalId String?
   goal   Goal? @relation(fields: [goalId], references: [id], onDelete: SetNull)
 
@@ -219,7 +265,6 @@ model Availability {
 model Settings {
   id String @id @default(cuid())
 
-  aiPrompt String?
 
   workHoursPerDay     Int @default(8)
   breakMinutes        Int @default(15)

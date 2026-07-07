@@ -28,6 +28,7 @@ export type UserMinAggregateOutputType = {
   id: string | null
   name: string | null
   email: string | null
+  vision: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -36,6 +37,7 @@ export type UserMaxAggregateOutputType = {
   id: string | null
   name: string | null
   email: string | null
+  vision: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,6 +46,7 @@ export type UserCountAggregateOutputType = {
   id: number
   name: number
   email: number
+  vision: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -54,6 +57,7 @@ export type UserMinAggregateInputType = {
   id?: true
   name?: true
   email?: true
+  vision?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -62,6 +66,7 @@ export type UserMaxAggregateInputType = {
   id?: true
   name?: true
   email?: true
+  vision?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -70,6 +75,7 @@ export type UserCountAggregateInputType = {
   id?: true
   name?: true
   email?: true
+  vision?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -151,6 +157,7 @@ export type UserGroupByOutputType = {
   id: string
   name: string
   email: string | null
+  vision: string | null
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -180,12 +187,13 @@ export type UserWhereInput = {
   id?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringNullableFilter<"User"> | string | null
+  vision?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  goals?: Prisma.GoalListRelationFilter
-  tasks?: Prisma.TaskListRelationFilter
-  routines?: Prisma.RoutineListRelationFilter
+  categories?: Prisma.CategoryListRelationFilter
+  task?: Prisma.TaskListRelationFilter
   timeBlocks?: Prisma.TimeBlockListRelationFilter
+  routines?: Prisma.RoutineListRelationFilter
   availability?: Prisma.AvailabilityListRelationFilter
   aiContexts?: Prisma.AIContextListRelationFilter
   settings?: Prisma.XOR<Prisma.SettingsNullableScalarRelationFilter, Prisma.SettingsWhereInput> | null
@@ -195,12 +203,13 @@ export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  vision?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  goals?: Prisma.GoalOrderByRelationAggregateInput
-  tasks?: Prisma.TaskOrderByRelationAggregateInput
-  routines?: Prisma.RoutineOrderByRelationAggregateInput
+  categories?: Prisma.CategoryOrderByRelationAggregateInput
+  task?: Prisma.TaskOrderByRelationAggregateInput
   timeBlocks?: Prisma.TimeBlockOrderByRelationAggregateInput
+  routines?: Prisma.RoutineOrderByRelationAggregateInput
   availability?: Prisma.AvailabilityOrderByRelationAggregateInput
   aiContexts?: Prisma.AIContextOrderByRelationAggregateInput
   settings?: Prisma.SettingsOrderByWithRelationInput
@@ -213,12 +222,13 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringFilter<"User"> | string
+  vision?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  goals?: Prisma.GoalListRelationFilter
-  tasks?: Prisma.TaskListRelationFilter
-  routines?: Prisma.RoutineListRelationFilter
+  categories?: Prisma.CategoryListRelationFilter
+  task?: Prisma.TaskListRelationFilter
   timeBlocks?: Prisma.TimeBlockListRelationFilter
+  routines?: Prisma.RoutineListRelationFilter
   availability?: Prisma.AvailabilityListRelationFilter
   aiContexts?: Prisma.AIContextListRelationFilter
   settings?: Prisma.XOR<Prisma.SettingsNullableScalarRelationFilter, Prisma.SettingsWhereInput> | null
@@ -228,6 +238,7 @@ export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  vision?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -242,6 +253,7 @@ export type UserScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  vision?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -250,12 +262,13 @@ export type UserCreateInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
@@ -265,12 +278,13 @@ export type UserUncheckedCreateInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockUncheckedCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityUncheckedCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
@@ -280,12 +294,13 @@ export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
@@ -295,12 +310,13 @@ export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUncheckedUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUncheckedUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
@@ -310,6 +326,7 @@ export type UserCreateManyInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -318,6 +335,7 @@ export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -326,6 +344,7 @@ export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -334,6 +353,7 @@ export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  vision?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -342,6 +362,7 @@ export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  vision?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -350,6 +371,7 @@ export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  vision?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -371,32 +393,32 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type UserCreateNestedOneWithoutGoalsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGoalsInput
+export type UserCreateNestedOneWithoutCategoriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCategoriesInput, Prisma.UserUncheckedCreateWithoutCategoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCategoriesInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutGoalsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGoalsInput
-  upsert?: Prisma.UserUpsertWithoutGoalsInput
+export type UserUpdateOneRequiredWithoutCategoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCategoriesInput, Prisma.UserUncheckedCreateWithoutCategoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCategoriesInput
+  upsert?: Prisma.UserUpsertWithoutCategoriesInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutGoalsInput, Prisma.UserUpdateWithoutGoalsInput>, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCategoriesInput, Prisma.UserUpdateWithoutCategoriesInput>, Prisma.UserUncheckedUpdateWithoutCategoriesInput>
 }
 
-export type UserCreateNestedOneWithoutTasksInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTasksInput
+export type UserCreateNestedOneWithoutTaskInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTaskInput, Prisma.UserUncheckedCreateWithoutTaskInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTaskInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutTasksNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTasksInput
-  upsert?: Prisma.UserUpsertWithoutTasksInput
+export type UserUpdateOneRequiredWithoutTaskNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTaskInput, Prisma.UserUncheckedCreateWithoutTaskInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTaskInput
+  upsert?: Prisma.UserUpsertWithoutTaskInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTasksInput, Prisma.UserUpdateWithoutTasksInput>, Prisma.UserUncheckedUpdateWithoutTasksInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTaskInput, Prisma.UserUpdateWithoutTaskInput>, Prisma.UserUncheckedUpdateWithoutTaskInput>
 }
 
 export type UserCreateNestedOneWithoutRoutinesInput = {
@@ -469,145 +491,153 @@ export type UserUpdateOneRequiredWithoutAiContextsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAiContextsInput, Prisma.UserUpdateWithoutAiContextsInput>, Prisma.UserUncheckedUpdateWithoutAiContextsInput>
 }
 
-export type UserCreateWithoutGoalsInput = {
+export type UserCreateWithoutCategoriesInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutGoalsInput = {
+export type UserUncheckedCreateWithoutCategoriesInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockUncheckedCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityUncheckedCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutGoalsInput = {
+export type UserCreateOrConnectWithoutCategoriesInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCategoriesInput, Prisma.UserUncheckedCreateWithoutCategoriesInput>
 }
 
-export type UserUpsertWithoutGoalsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+export type UserUpsertWithoutCategoriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCategoriesInput, Prisma.UserUncheckedUpdateWithoutCategoriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCategoriesInput, Prisma.UserUncheckedCreateWithoutCategoriesInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutGoalsInput = {
+export type UserUpdateToOneWithWhereWithoutCategoriesInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCategoriesInput, Prisma.UserUncheckedUpdateWithoutCategoriesInput>
 }
 
-export type UserUpdateWithoutGoalsInput = {
+export type UserUpdateWithoutCategoriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutGoalsInput = {
+export type UserUncheckedUpdateWithoutCategoriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUncheckedUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUncheckedUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
 }
 
-export type UserCreateWithoutTasksInput = {
+export type UserCreateWithoutTaskInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutTasksInput = {
+export type UserUncheckedCreateWithoutTaskInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockUncheckedCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityUncheckedCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutTasksInput = {
+export type UserCreateOrConnectWithoutTaskInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTaskInput, Prisma.UserUncheckedCreateWithoutTaskInput>
 }
 
-export type UserUpsertWithoutTasksInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTasksInput, Prisma.UserUncheckedUpdateWithoutTasksInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
+export type UserUpsertWithoutTaskInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTaskInput, Prisma.UserUncheckedUpdateWithoutTaskInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTaskInput, Prisma.UserUncheckedCreateWithoutTaskInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutTasksInput = {
+export type UserUpdateToOneWithWhereWithoutTaskInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTasksInput, Prisma.UserUncheckedUpdateWithoutTasksInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTaskInput, Prisma.UserUncheckedUpdateWithoutTaskInput>
 }
 
-export type UserUpdateWithoutTasksInput = {
+export type UserUpdateWithoutTaskInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutTasksInput = {
+export type UserUncheckedUpdateWithoutTaskInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUncheckedUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUncheckedUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
@@ -617,10 +647,11 @@ export type UserCreateWithoutRoutinesInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
@@ -631,10 +662,11 @@ export type UserUncheckedCreateWithoutRoutinesInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockUncheckedCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityUncheckedCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
@@ -661,10 +693,11 @@ export type UserUpdateWithoutRoutinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
@@ -675,10 +708,11 @@ export type UserUncheckedUpdateWithoutRoutinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUncheckedUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUncheckedUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
@@ -689,10 +723,11 @@ export type UserCreateWithoutTimeBlocksInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskCreateNestedManyWithoutUserInput
   routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
@@ -703,10 +738,11 @@ export type UserUncheckedCreateWithoutTimeBlocksInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityUncheckedCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
@@ -733,10 +769,11 @@ export type UserUpdateWithoutTimeBlocksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUpdateManyWithoutUserNestedInput
   routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
@@ -747,10 +784,11 @@ export type UserUncheckedUpdateWithoutTimeBlocksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUncheckedUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
@@ -761,12 +799,13 @@ export type UserCreateWithoutAvailabilityInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
 }
@@ -775,12 +814,13 @@ export type UserUncheckedCreateWithoutAvailabilityInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockUncheckedCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
 }
@@ -805,12 +845,13 @@ export type UserUpdateWithoutAvailabilityInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
 }
@@ -819,12 +860,13 @@ export type UserUncheckedUpdateWithoutAvailabilityInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUncheckedUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
 }
@@ -833,12 +875,13 @@ export type UserCreateWithoutSettingsInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextCreateNestedManyWithoutUserInput
 }
@@ -847,12 +890,13 @@ export type UserUncheckedCreateWithoutSettingsInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockUncheckedCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityUncheckedCreateNestedManyWithoutUserInput
   aiContexts?: Prisma.AIContextUncheckedCreateNestedManyWithoutUserInput
 }
@@ -877,12 +921,13 @@ export type UserUpdateWithoutSettingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUpdateManyWithoutUserNestedInput
 }
@@ -891,12 +936,13 @@ export type UserUncheckedUpdateWithoutSettingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUncheckedUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUncheckedUpdateManyWithoutUserNestedInput
   aiContexts?: Prisma.AIContextUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -905,12 +951,13 @@ export type UserCreateWithoutAiContextsInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
 }
@@ -919,12 +966,13 @@ export type UserUncheckedCreateWithoutAiContextsInput = {
   id?: string
   name: string
   email?: string | null
+  vision?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
-  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
-  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput
+  task?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   timeBlocks?: Prisma.TimeBlockUncheckedCreateNestedManyWithoutUserInput
+  routines?: Prisma.RoutineUncheckedCreateNestedManyWithoutUserInput
   availability?: Prisma.AvailabilityUncheckedCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
 }
@@ -949,12 +997,13 @@ export type UserUpdateWithoutAiContextsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
 }
@@ -963,12 +1012,13 @@ export type UserUncheckedUpdateWithoutAiContextsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vision?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
-  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
-  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput
+  task?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   timeBlocks?: Prisma.TimeBlockUncheckedUpdateManyWithoutUserNestedInput
+  routines?: Prisma.RoutineUncheckedUpdateManyWithoutUserNestedInput
   availability?: Prisma.AvailabilityUncheckedUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
 }
@@ -979,19 +1029,19 @@ export type UserUncheckedUpdateWithoutAiContextsInput = {
  */
 
 export type UserCountOutputType = {
-  goals: number
-  tasks: number
-  routines: number
+  categories: number
+  task: number
   timeBlocks: number
+  routines: number
   availability: number
   aiContexts: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  goals?: boolean | UserCountOutputTypeCountGoalsArgs
-  tasks?: boolean | UserCountOutputTypeCountTasksArgs
-  routines?: boolean | UserCountOutputTypeCountRoutinesArgs
+  categories?: boolean | UserCountOutputTypeCountCategoriesArgs
+  task?: boolean | UserCountOutputTypeCountTaskArgs
   timeBlocks?: boolean | UserCountOutputTypeCountTimeBlocksArgs
+  routines?: boolean | UserCountOutputTypeCountRoutinesArgs
   availability?: boolean | UserCountOutputTypeCountAvailabilityArgs
   aiContexts?: boolean | UserCountOutputTypeCountAiContextsArgs
 }
@@ -1009,22 +1059,15 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.GoalWhereInput
+export type UserCountOutputTypeCountCategoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CategoryWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserCountOutputTypeCountTaskArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.TaskWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountRoutinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.RoutineWhereInput
 }
 
 /**
@@ -1032,6 +1075,13 @@ export type UserCountOutputTypeCountRoutinesArgs<ExtArgs extends runtime.Types.E
  */
 export type UserCountOutputTypeCountTimeBlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.TimeBlockWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRoutinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RoutineWhereInput
 }
 
 /**
@@ -1053,12 +1103,13 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   name?: boolean
   email?: boolean
+  vision?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
-  tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
-  routines?: boolean | Prisma.User$routinesArgs<ExtArgs>
+  categories?: boolean | Prisma.User$categoriesArgs<ExtArgs>
+  task?: boolean | Prisma.User$taskArgs<ExtArgs>
   timeBlocks?: boolean | Prisma.User$timeBlocksArgs<ExtArgs>
+  routines?: boolean | Prisma.User$routinesArgs<ExtArgs>
   availability?: boolean | Prisma.User$availabilityArgs<ExtArgs>
   aiContexts?: boolean | Prisma.User$aiContextsArgs<ExtArgs>
   settings?: boolean | Prisma.User$settingsArgs<ExtArgs>
@@ -1069,6 +1120,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   name?: boolean
   email?: boolean
+  vision?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -1077,6 +1129,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   name?: boolean
   email?: boolean
+  vision?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -1085,16 +1138,17 @@ export type UserSelectScalar = {
   id?: boolean
   name?: boolean
   email?: boolean
+  vision?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "vision" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
-  tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
-  routines?: boolean | Prisma.User$routinesArgs<ExtArgs>
+  categories?: boolean | Prisma.User$categoriesArgs<ExtArgs>
+  task?: boolean | Prisma.User$taskArgs<ExtArgs>
   timeBlocks?: boolean | Prisma.User$timeBlocksArgs<ExtArgs>
+  routines?: boolean | Prisma.User$routinesArgs<ExtArgs>
   availability?: boolean | Prisma.User$availabilityArgs<ExtArgs>
   aiContexts?: boolean | Prisma.User$aiContextsArgs<ExtArgs>
   settings?: boolean | Prisma.User$settingsArgs<ExtArgs>
@@ -1106,10 +1160,10 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    goals: Prisma.$GoalPayload<ExtArgs>[]
-    tasks: Prisma.$TaskPayload<ExtArgs>[]
-    routines: Prisma.$RoutinePayload<ExtArgs>[]
+    categories: Prisma.$CategoryPayload<ExtArgs>[]
+    task: Prisma.$TaskPayload<ExtArgs>[]
     timeBlocks: Prisma.$TimeBlockPayload<ExtArgs>[]
+    routines: Prisma.$RoutinePayload<ExtArgs>[]
     availability: Prisma.$AvailabilityPayload<ExtArgs>[]
     aiContexts: Prisma.$AIContextPayload<ExtArgs>[]
     settings: Prisma.$SettingsPayload<ExtArgs> | null
@@ -1118,6 +1172,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: string
     name: string
     email: string | null
+    vision: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -1514,10 +1569,10 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  goals<T extends Prisma.User$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  tasks<T extends Prisma.User$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  routines<T extends Prisma.User$routinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$routinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoutinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  categories<T extends Prisma.User$categoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  task<T extends Prisma.User$taskArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$taskArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   timeBlocks<T extends Prisma.User$timeBlocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$timeBlocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  routines<T extends Prisma.User$routinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$routinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoutinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   availability<T extends Prisma.User$availabilityArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$availabilityArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AvailabilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   aiContexts<T extends Prisma.User$aiContextsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$aiContextsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AIContextPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   settings<T extends Prisma.User$settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$settingsArgs<ExtArgs>>): Prisma.Prisma__SettingsClient<runtime.Types.Result.GetResult<Prisma.$SettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -1553,6 +1608,7 @@ export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
+  readonly vision: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -1948,33 +2004,33 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.goals
+ * User.categories
  */
-export type User$goalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$categoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Goal
+   * Select specific fields to fetch from the Category
    */
-  select?: Prisma.GoalSelect<ExtArgs> | null
+  select?: Prisma.CategorySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Goal
+   * Omit specific fields from the Category
    */
-  omit?: Prisma.GoalOmit<ExtArgs> | null
+  omit?: Prisma.CategoryOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.GoalInclude<ExtArgs> | null
-  where?: Prisma.GoalWhereInput
-  orderBy?: Prisma.GoalOrderByWithRelationInput | Prisma.GoalOrderByWithRelationInput[]
-  cursor?: Prisma.GoalWhereUniqueInput
+  include?: Prisma.CategoryInclude<ExtArgs> | null
+  where?: Prisma.CategoryWhereInput
+  orderBy?: Prisma.CategoryOrderByWithRelationInput | Prisma.CategoryOrderByWithRelationInput[]
+  cursor?: Prisma.CategoryWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.GoalScalarFieldEnum | Prisma.GoalScalarFieldEnum[]
+  distinct?: Prisma.CategoryScalarFieldEnum | Prisma.CategoryScalarFieldEnum[]
 }
 
 /**
- * User.tasks
+ * User.task
  */
-export type User$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$taskArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Task
    */
@@ -1993,30 +2049,6 @@ export type User$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   distinct?: Prisma.TaskScalarFieldEnum | Prisma.TaskScalarFieldEnum[]
-}
-
-/**
- * User.routines
- */
-export type User$routinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Routine
-   */
-  select?: Prisma.RoutineSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Routine
-   */
-  omit?: Prisma.RoutineOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.RoutineInclude<ExtArgs> | null
-  where?: Prisma.RoutineWhereInput
-  orderBy?: Prisma.RoutineOrderByWithRelationInput | Prisma.RoutineOrderByWithRelationInput[]
-  cursor?: Prisma.RoutineWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.RoutineScalarFieldEnum | Prisma.RoutineScalarFieldEnum[]
 }
 
 /**
@@ -2041,6 +2073,30 @@ export type User$timeBlocksArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.TimeBlockScalarFieldEnum | Prisma.TimeBlockScalarFieldEnum[]
+}
+
+/**
+ * User.routines
+ */
+export type User$routinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Routine
+   */
+  select?: Prisma.RoutineSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Routine
+   */
+  omit?: Prisma.RoutineOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoutineInclude<ExtArgs> | null
+  where?: Prisma.RoutineWhereInput
+  orderBy?: Prisma.RoutineOrderByWithRelationInput | Prisma.RoutineOrderByWithRelationInput[]
+  cursor?: Prisma.RoutineWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RoutineScalarFieldEnum | Prisma.RoutineScalarFieldEnum[]
 }
 
 /**

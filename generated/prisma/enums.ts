@@ -48,3 +48,23 @@ export const RoutineFrequency = {
 } as const
 
 export type RoutineFrequency = (typeof RoutineFrequency)[keyof typeof RoutineFrequency]
+
+
+export const GoalPriority = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  CRITICAL: 'CRITICAL'
+} as const
+
+export type GoalPriority = (typeof GoalPriority)[keyof typeof GoalPriority]
+
+
+export const GoalStatus = {
+  NOT_STARTED: 'NOT_STARTED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  PAUSED: 'PAUSED'
+} as const
+
+export type GoalStatus = (typeof GoalStatus)[keyof typeof GoalStatus]

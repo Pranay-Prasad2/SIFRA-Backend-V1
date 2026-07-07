@@ -40,7 +40,6 @@ export type SettingsSumAggregateOutputType = {
 
 export type SettingsMinAggregateOutputType = {
   id: string | null
-  aiPrompt: string | null
   workHoursPerDay: number | null
   breakMinutes: number | null
   focusSessionMinutes: number | null
@@ -52,7 +51,6 @@ export type SettingsMinAggregateOutputType = {
 
 export type SettingsMaxAggregateOutputType = {
   id: string | null
-  aiPrompt: string | null
   workHoursPerDay: number | null
   breakMinutes: number | null
   focusSessionMinutes: number | null
@@ -64,7 +62,6 @@ export type SettingsMaxAggregateOutputType = {
 
 export type SettingsCountAggregateOutputType = {
   id: number
-  aiPrompt: number
   workHoursPerDay: number
   breakMinutes: number
   focusSessionMinutes: number
@@ -90,7 +87,6 @@ export type SettingsSumAggregateInputType = {
 
 export type SettingsMinAggregateInputType = {
   id?: true
-  aiPrompt?: true
   workHoursPerDay?: true
   breakMinutes?: true
   focusSessionMinutes?: true
@@ -102,7 +98,6 @@ export type SettingsMinAggregateInputType = {
 
 export type SettingsMaxAggregateInputType = {
   id?: true
-  aiPrompt?: true
   workHoursPerDay?: true
   breakMinutes?: true
   focusSessionMinutes?: true
@@ -114,7 +109,6 @@ export type SettingsMaxAggregateInputType = {
 
 export type SettingsCountAggregateInputType = {
   id?: true
-  aiPrompt?: true
   workHoursPerDay?: true
   breakMinutes?: true
   focusSessionMinutes?: true
@@ -213,7 +207,6 @@ export type SettingsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type SettingsGroupByOutputType = {
   id: string
-  aiPrompt: string | null
   workHoursPerDay: number
   breakMinutes: number
   focusSessionMinutes: number
@@ -248,7 +241,6 @@ export type SettingsWhereInput = {
   OR?: Prisma.SettingsWhereInput[]
   NOT?: Prisma.SettingsWhereInput | Prisma.SettingsWhereInput[]
   id?: Prisma.StringFilter<"Settings"> | string
-  aiPrompt?: Prisma.StringNullableFilter<"Settings"> | string | null
   workHoursPerDay?: Prisma.IntFilter<"Settings"> | number
   breakMinutes?: Prisma.IntFilter<"Settings"> | number
   focusSessionMinutes?: Prisma.IntFilter<"Settings"> | number
@@ -261,7 +253,6 @@ export type SettingsWhereInput = {
 
 export type SettingsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  aiPrompt?: Prisma.SortOrderInput | Prisma.SortOrder
   workHoursPerDay?: Prisma.SortOrder
   breakMinutes?: Prisma.SortOrder
   focusSessionMinutes?: Prisma.SortOrder
@@ -278,7 +269,6 @@ export type SettingsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SettingsWhereInput | Prisma.SettingsWhereInput[]
   OR?: Prisma.SettingsWhereInput[]
   NOT?: Prisma.SettingsWhereInput | Prisma.SettingsWhereInput[]
-  aiPrompt?: Prisma.StringNullableFilter<"Settings"> | string | null
   workHoursPerDay?: Prisma.IntFilter<"Settings"> | number
   breakMinutes?: Prisma.IntFilter<"Settings"> | number
   focusSessionMinutes?: Prisma.IntFilter<"Settings"> | number
@@ -290,7 +280,6 @@ export type SettingsWhereUniqueInput = Prisma.AtLeast<{
 
 export type SettingsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  aiPrompt?: Prisma.SortOrderInput | Prisma.SortOrder
   workHoursPerDay?: Prisma.SortOrder
   breakMinutes?: Prisma.SortOrder
   focusSessionMinutes?: Prisma.SortOrder
@@ -310,7 +299,6 @@ export type SettingsScalarWhereWithAggregatesInput = {
   OR?: Prisma.SettingsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SettingsScalarWhereWithAggregatesInput | Prisma.SettingsScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Settings"> | string
-  aiPrompt?: Prisma.StringNullableWithAggregatesFilter<"Settings"> | string | null
   workHoursPerDay?: Prisma.IntWithAggregatesFilter<"Settings"> | number
   breakMinutes?: Prisma.IntWithAggregatesFilter<"Settings"> | number
   focusSessionMinutes?: Prisma.IntWithAggregatesFilter<"Settings"> | number
@@ -322,7 +310,6 @@ export type SettingsScalarWhereWithAggregatesInput = {
 
 export type SettingsCreateInput = {
   id?: string
-  aiPrompt?: string | null
   workHoursPerDay?: number
   breakMinutes?: number
   focusSessionMinutes?: number
@@ -334,7 +321,6 @@ export type SettingsCreateInput = {
 
 export type SettingsUncheckedCreateInput = {
   id?: string
-  aiPrompt?: string | null
   workHoursPerDay?: number
   breakMinutes?: number
   focusSessionMinutes?: number
@@ -346,7 +332,6 @@ export type SettingsUncheckedCreateInput = {
 
 export type SettingsUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  aiPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workHoursPerDay?: Prisma.IntFieldUpdateOperationsInput | number
   breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   focusSessionMinutes?: Prisma.IntFieldUpdateOperationsInput | number
@@ -358,7 +343,6 @@ export type SettingsUpdateInput = {
 
 export type SettingsUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  aiPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workHoursPerDay?: Prisma.IntFieldUpdateOperationsInput | number
   breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   focusSessionMinutes?: Prisma.IntFieldUpdateOperationsInput | number
@@ -370,7 +354,6 @@ export type SettingsUncheckedUpdateInput = {
 
 export type SettingsCreateManyInput = {
   id?: string
-  aiPrompt?: string | null
   workHoursPerDay?: number
   breakMinutes?: number
   focusSessionMinutes?: number
@@ -382,7 +365,6 @@ export type SettingsCreateManyInput = {
 
 export type SettingsUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  aiPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workHoursPerDay?: Prisma.IntFieldUpdateOperationsInput | number
   breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   focusSessionMinutes?: Prisma.IntFieldUpdateOperationsInput | number
@@ -393,7 +375,6 @@ export type SettingsUpdateManyMutationInput = {
 
 export type SettingsUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  aiPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workHoursPerDay?: Prisma.IntFieldUpdateOperationsInput | number
   breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   focusSessionMinutes?: Prisma.IntFieldUpdateOperationsInput | number
@@ -410,7 +391,6 @@ export type SettingsNullableScalarRelationFilter = {
 
 export type SettingsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  aiPrompt?: Prisma.SortOrder
   workHoursPerDay?: Prisma.SortOrder
   breakMinutes?: Prisma.SortOrder
   focusSessionMinutes?: Prisma.SortOrder
@@ -428,7 +408,6 @@ export type SettingsAvgOrderByAggregateInput = {
 
 export type SettingsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  aiPrompt?: Prisma.SortOrder
   workHoursPerDay?: Prisma.SortOrder
   breakMinutes?: Prisma.SortOrder
   focusSessionMinutes?: Prisma.SortOrder
@@ -440,7 +419,6 @@ export type SettingsMaxOrderByAggregateInput = {
 
 export type SettingsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  aiPrompt?: Prisma.SortOrder
   workHoursPerDay?: Prisma.SortOrder
   breakMinutes?: Prisma.SortOrder
   focusSessionMinutes?: Prisma.SortOrder
@@ -490,7 +468,6 @@ export type SettingsUncheckedUpdateOneWithoutUserNestedInput = {
 
 export type SettingsCreateWithoutUserInput = {
   id?: string
-  aiPrompt?: string | null
   workHoursPerDay?: number
   breakMinutes?: number
   focusSessionMinutes?: number
@@ -501,7 +478,6 @@ export type SettingsCreateWithoutUserInput = {
 
 export type SettingsUncheckedCreateWithoutUserInput = {
   id?: string
-  aiPrompt?: string | null
   workHoursPerDay?: number
   breakMinutes?: number
   focusSessionMinutes?: number
@@ -528,7 +504,6 @@ export type SettingsUpdateToOneWithWhereWithoutUserInput = {
 
 export type SettingsUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  aiPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workHoursPerDay?: Prisma.IntFieldUpdateOperationsInput | number
   breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   focusSessionMinutes?: Prisma.IntFieldUpdateOperationsInput | number
@@ -539,7 +514,6 @@ export type SettingsUpdateWithoutUserInput = {
 
 export type SettingsUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  aiPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workHoursPerDay?: Prisma.IntFieldUpdateOperationsInput | number
   breakMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   focusSessionMinutes?: Prisma.IntFieldUpdateOperationsInput | number
@@ -552,7 +526,6 @@ export type SettingsUncheckedUpdateWithoutUserInput = {
 
 export type SettingsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  aiPrompt?: boolean
   workHoursPerDay?: boolean
   breakMinutes?: boolean
   focusSessionMinutes?: boolean
@@ -565,7 +538,6 @@ export type SettingsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type SettingsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  aiPrompt?: boolean
   workHoursPerDay?: boolean
   breakMinutes?: boolean
   focusSessionMinutes?: boolean
@@ -578,7 +550,6 @@ export type SettingsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type SettingsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  aiPrompt?: boolean
   workHoursPerDay?: boolean
   breakMinutes?: boolean
   focusSessionMinutes?: boolean
@@ -591,7 +562,6 @@ export type SettingsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type SettingsSelectScalar = {
   id?: boolean
-  aiPrompt?: boolean
   workHoursPerDay?: boolean
   breakMinutes?: boolean
   focusSessionMinutes?: boolean
@@ -601,7 +571,7 @@ export type SettingsSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "aiPrompt" | "workHoursPerDay" | "breakMinutes" | "focusSessionMinutes" | "theme" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["settings"]>
+export type SettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workHoursPerDay" | "breakMinutes" | "focusSessionMinutes" | "theme" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["settings"]>
 export type SettingsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -619,7 +589,6 @@ export type $SettingsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    aiPrompt: string | null
     workHoursPerDay: number
     breakMinutes: number
     focusSessionMinutes: number
@@ -1052,7 +1021,6 @@ export interface Prisma__SettingsClient<T, Null = never, ExtArgs extends runtime
  */
 export interface SettingsFieldRefs {
   readonly id: Prisma.FieldRef<"Settings", 'String'>
-  readonly aiPrompt: Prisma.FieldRef<"Settings", 'String'>
   readonly workHoursPerDay: Prisma.FieldRef<"Settings", 'Int'>
   readonly breakMinutes: Prisma.FieldRef<"Settings", 'Int'>
   readonly focusSessionMinutes: Prisma.FieldRef<"Settings", 'Int'>

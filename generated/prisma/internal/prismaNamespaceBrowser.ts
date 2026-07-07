@@ -52,6 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  Category: 'Category',
   Goal: 'Goal',
   Task: 'Task',
   Routine: 'Routine',
@@ -82,6 +83,7 @@ export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
+  vision: 'vision',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -89,13 +91,30 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  weeklyTargetHours: 'weeklyTargetHours',
+  color: 'color',
+  icon: 'icon',
+  isActive: 'isActive',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
 export const GoalScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  targetDate: 'targetDate',
+  priority: 'priority',
+  deadline: 'deadline',
+  status: 'status',
   isActive: 'isActive',
-  userId: 'userId',
+  categoryId: 'categoryId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -182,7 +201,6 @@ export type AvailabilityScalarFieldEnum = (typeof AvailabilityScalarFieldEnum)[k
 
 export const SettingsScalarFieldEnum = {
   id: 'id',
-  aiPrompt: 'aiPrompt',
   workHoursPerDay: 'workHoursPerDay',
   breakMinutes: 'breakMinutes',
   focusSessionMinutes: 'focusSessionMinutes',
