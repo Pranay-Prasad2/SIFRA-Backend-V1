@@ -4,16 +4,6 @@ import { TaskService } from "../services/task.service.js";
 
 const taskService = new TaskService();
 
-export const createTask = asyncHandler(async (req: Request, res: Response) => {
-  const task = await taskService.createTask(req.user.id, req.body);
-
-  res.status(201).json({
-    success: true,
-
-    data: task,
-  });
-});
-
 export const getTasks = asyncHandler(async (req: Request, res: Response) => {
   const tasks = await taskService.getTasks(req.user.id, req.query);
 

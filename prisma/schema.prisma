@@ -74,6 +74,7 @@ model User {
 
   categories   Category[]
   task         Task[]
+  goal         Goal[]
   timeBlocks   TimeBlock[]
   routines     Routine[]
   availability Availability[]
@@ -122,11 +123,11 @@ model Goal {
   priority GoalPriority @default(MEDIUM)
 
   deadline DateTime?
-
   status GoalStatus @default(NOT_STARTED)
-
   isActive Boolean @default(true)
 
+  userId String
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   categoryId String
   category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
