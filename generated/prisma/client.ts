@@ -52,42 +52,12 @@ export type User = Prisma.UserModel
  */
 export type Category = Prisma.CategoryModel
 /**
- * Model Goal
+ * Model FocusBlock
  * 
  */
-export type Goal = Prisma.GoalModel
+export type FocusBlock = Prisma.FocusBlockModel
 /**
- * Model Task
+ * Model ActivitySession
  * 
  */
-export type Task = Prisma.TaskModel
-/**
- * Model Routine
- * 
- */
-export type Routine = Prisma.RoutineModel
-/**
- * Model TimeBlock
- * 
- */
-export type TimeBlock = Prisma.TimeBlockModel
-/**
- * Model TaskSession
- * 
- */
-export type TaskSession = Prisma.TaskSessionModel
-/**
- * Model Availability
- * 
- */
-export type Availability = Prisma.AvailabilityModel
-/**
- * Model Settings
- * 
- */
-export type Settings = Prisma.SettingsModel
-/**
- * Model AIContext
- * 
- */
-export type AIContext = Prisma.AIContextModel
+export type ActivitySession = Prisma.ActivitySessionModel

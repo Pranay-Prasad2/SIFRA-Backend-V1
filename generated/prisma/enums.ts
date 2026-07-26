@@ -9,62 +9,7 @@
 * 🟢 You can import this file directly.
 */
 
-export const TaskStatus = {
-  PENDING: 'PENDING',
-  IN_PROGRESS: 'IN_PROGRESS',
-  COMPLETED: 'COMPLETED',
-  SKIPPED: 'SKIPPED'
-} as const
-
-export type TaskStatus = (typeof TaskStatus)[keyof typeof TaskStatus]
 
 
-export const TaskPriority = {
-  LOW: 'LOW',
-  MEDIUM: 'MEDIUM',
-  HIGH: 'HIGH',
-  CRITICAL: 'CRITICAL'
-} as const
-
-export type TaskPriority = (typeof TaskPriority)[keyof typeof TaskPriority]
-
-
-export const TimeBlockType = {
-  TASK: 'TASK',
-  ROUTINE: 'ROUTINE',
-  BREAK: 'BREAK',
-  MEETING: 'MEETING',
-  BUFFER: 'BUFFER',
-  PERSONAL: 'PERSONAL'
-} as const
-
-export type TimeBlockType = (typeof TimeBlockType)[keyof typeof TimeBlockType]
-
-
-export const RoutineFrequency = {
-  DAILY: 'DAILY',
-  WEEKLY: 'WEEKLY',
-  CUSTOM: 'CUSTOM'
-} as const
-
-export type RoutineFrequency = (typeof RoutineFrequency)[keyof typeof RoutineFrequency]
-
-
-export const GoalPriority = {
-  LOW: 'LOW',
-  MEDIUM: 'MEDIUM',
-  HIGH: 'HIGH',
-  CRITICAL: 'CRITICAL'
-} as const
-
-export type GoalPriority = (typeof GoalPriority)[keyof typeof GoalPriority]
-
-
-export const GoalStatus = {
-  NOT_STARTED: 'NOT_STARTED',
-  IN_PROGRESS: 'IN_PROGRESS',
-  COMPLETED: 'COMPLETED',
-  PAUSED: 'PAUSED'
-} as const
-
-export type GoalStatus = (typeof GoalStatus)[keyof typeof GoalStatus]
+// This file is empty because there are no enums in the schema.
+export {}

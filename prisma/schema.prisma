@@ -12,86 +12,36 @@ datasource db {
   provider = "postgresql"
 }
 
-
-//////////////////////////////////////////////////////
-// ENUMS
-//////////////////////////////////////////////////////
-
-enum TaskStatus {
-  PENDING
-  IN_PROGRESS
-  COMPLETED
-  SKIPPED
-}
-
-enum TaskPriority {
-  LOW
-  MEDIUM
-  HIGH
-  CRITICAL
-}
-
-enum TimeBlockType {
-  TASK
-  ROUTINE
-  BREAK
-  MEETING
-  BUFFER
-  PERSONAL
-}
-
-enum RoutineFrequency {
-  DAILY
-  WEEKLY
-  CUSTOM
-}
-
-enum GoalPriority {
-  LOW
-  MEDIUM
-  HIGH
-  CRITICAL
-}
-
-enum GoalStatus {
-  NOT_STARTED
-  IN_PROGRESS
-  COMPLETED
-  PAUSED
-}
 //////////////////////////////////////////////////////
 // USER
 //////////////////////////////////////////////////////
 
 model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String?  @unique
-  vision    String?
+  id String @id @default(cuid())
+
+  name String
+
+  vision String?
+
+  categories Category[]
+
+  focusBlocks FocusBlock[]
+
+  sessions ActivitySession[]
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
-  categories   Category[]
-  task         Task[]
-  goal         Goal[]
-  timeBlocks   TimeBlock[]
-  routines     Routine[]
-  availability Availability[]
-  aiContexts   AIContext[]
-  settings     Settings?
+  updatedAt DateTime @updatedAt
 }
 
 //////////////////////////////////////////////////////
-// Category
+// CATEGORY
 //////////////////////////////////////////////////////
 
 model Category {
   id String @id @default(cuid())
 
   name String
-
-  weeklyTargetHours Float
 
   color String?
 
@@ -100,201 +50,68 @@ model Category {
   isActive Boolean @default(true)
 
   userId String
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  goals Goal[]
+  focusBlocks FocusBlock[]
 
   createdAt DateTime @default(now())
+
   updatedAt DateTime @updatedAt
+
+  @@unique([userId, name])
 }
 
-
 //////////////////////////////////////////////////////
-// GOALS
+// FOCUS BLOCK
 //////////////////////////////////////////////////////
 
-model Goal {
-
+model FocusBlock {
   id String @id @default(cuid())
 
-  title String
+  name String
+
   description String?
 
-  priority GoalPriority @default(MEDIUM)
+  weeklyTargetMinutes Int
 
-  deadline DateTime?
-  status GoalStatus @default(NOT_STARTED)
-  isActive Boolean @default(true)
-
-  userId String
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   categoryId String
+
   category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
-  tasks Task[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-//////////////////////////////////////////////////////
-// TASKS (PLANNING LAYER)
-//////////////////////////////////////////////////////
-
-model Task {
-  id          String   @id @default(cuid())
-
-  title       String
-  description String?
-
-  priority    TaskPriority @default(MEDIUM)
-  status      TaskStatus @default(PENDING)
-
-  estimatedMinutes Int
-  completedMinutes Int @default(0)
-
-  order Int?
-
   userId String
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  goalId String?
-  goal   Goal? @relation(fields: [goalId], references: [id], onDelete: SetNull)
 
-  timeBlocks TimeBlock[]
-  sessions   TaskSession[]
+  isActive Boolean @default(true)
+
+  sessions ActivitySession[]
 
   createdAt DateTime @default(now())
+
   updatedAt DateTime @updatedAt
 }
 
 //////////////////////////////////////////////////////
-// ROUTINES (REAL LIFE CONSTRAINTS)
+// ACTIVITY SESSION
 //////////////////////////////////////////////////////
 
-model Routine {
-  id          String   @id @default(cuid())
-
-  title       String
-  description String?
-
-  frequency   RoutineFrequency
-
-  // e.g. "Monday", "Tuesday"
-  dayOfWeek   Int?
-
-  startTime   String
-  endTime     String
-
-  isActive    Boolean @default(true)
-
-  userId String
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-//////////////////////////////////////////////////////
-// TIME BLOCKS (EXECUTION LAYER)
-//////////////////////////////////////////////////////
-
-model TimeBlock {
+model ActivitySession {
   id String @id @default(cuid())
 
-  date DateTime
+  focusBlockId String
 
-  startTime DateTime
-  endTime   DateTime
-
-  type TimeBlockType
-
-  title String
-
-  completed Boolean @default(false)
+  focusBlock FocusBlock @relation(fields: [focusBlockId], references: [id], onDelete: Cascade)
 
   userId String
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  taskId String?
-  task   Task? @relation(fields: [taskId], references: [id], onDelete: SetNull)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-//////////////////////////////////////////////////////
-// TASK EXECUTION TRACKING
-//////////////////////////////////////////////////////
-
-model TaskSession {
-  id String @id @default(cuid())
-
-  taskId String
-  task   Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   startedAt DateTime
-  endedAt   DateTime?
 
-  duration Int?
-  wasPaused Boolean @default(false)
+  endedAt DateTime?
 
-  createdAt DateTime @default(now())
-}
-
-//////////////////////////////////////////////////////
-// WEEKLY AVAILABILITY
-//////////////////////////////////////////////////////
-
-model Availability {
-  id String @id @default(cuid())
-
-  dayOfWeek Int
-
-  startTime String
-  endTime   String
-
-  isAvailable Boolean @default(true)
-
-  userId String
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-//////////////////////////////////////////////////////
-// SETTINGS
-//////////////////////////////////////////////////////
-
-model Settings {
-  id String @id @default(cuid())
-
-
-  workHoursPerDay     Int @default(8)
-  breakMinutes        Int @default(15)
-  focusSessionMinutes Int @default(60)
-
-  theme String?
-
-  userId String @unique
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  durationMinutes Int?
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-//////////////////////////////////////////////////////
-// AI MEMORY
-//////////////////////////////////////////////////////
-
-model AIContext {
-  id String @id @default(cuid())
-
-  key   String
-  value Json
-
-  userId String
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([userId, key])
 }

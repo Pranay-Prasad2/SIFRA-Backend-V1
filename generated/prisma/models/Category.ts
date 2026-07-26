@@ -20,24 +20,13 @@ export type CategoryModel = runtime.Types.Result.DefaultSelection<Prisma.$Catego
 
 export type AggregateCategory = {
   _count: CategoryCountAggregateOutputType | null
-  _avg: CategoryAvgAggregateOutputType | null
-  _sum: CategorySumAggregateOutputType | null
   _min: CategoryMinAggregateOutputType | null
   _max: CategoryMaxAggregateOutputType | null
-}
-
-export type CategoryAvgAggregateOutputType = {
-  weeklyTargetHours: number | null
-}
-
-export type CategorySumAggregateOutputType = {
-  weeklyTargetHours: number | null
 }
 
 export type CategoryMinAggregateOutputType = {
   id: string | null
   name: string | null
-  weeklyTargetHours: number | null
   color: string | null
   icon: string | null
   isActive: boolean | null
@@ -49,7 +38,6 @@ export type CategoryMinAggregateOutputType = {
 export type CategoryMaxAggregateOutputType = {
   id: string | null
   name: string | null
-  weeklyTargetHours: number | null
   color: string | null
   icon: string | null
   isActive: boolean | null
@@ -61,7 +49,6 @@ export type CategoryMaxAggregateOutputType = {
 export type CategoryCountAggregateOutputType = {
   id: number
   name: number
-  weeklyTargetHours: number
   color: number
   icon: number
   isActive: number
@@ -72,18 +59,9 @@ export type CategoryCountAggregateOutputType = {
 }
 
 
-export type CategoryAvgAggregateInputType = {
-  weeklyTargetHours?: true
-}
-
-export type CategorySumAggregateInputType = {
-  weeklyTargetHours?: true
-}
-
 export type CategoryMinAggregateInputType = {
   id?: true
   name?: true
-  weeklyTargetHours?: true
   color?: true
   icon?: true
   isActive?: true
@@ -95,7 +73,6 @@ export type CategoryMinAggregateInputType = {
 export type CategoryMaxAggregateInputType = {
   id?: true
   name?: true
-  weeklyTargetHours?: true
   color?: true
   icon?: true
   isActive?: true
@@ -107,7 +84,6 @@ export type CategoryMaxAggregateInputType = {
 export type CategoryCountAggregateInputType = {
   id?: true
   name?: true
-  weeklyTargetHours?: true
   color?: true
   icon?: true
   isActive?: true
@@ -155,18 +131,6 @@ export type CategoryAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inter
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: CategoryAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: CategorySumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: CategoryMinAggregateInputType
@@ -197,8 +161,6 @@ export type CategoryGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   _count?: CategoryCountAggregateInputType | true
-  _avg?: CategoryAvgAggregateInputType
-  _sum?: CategorySumAggregateInputType
   _min?: CategoryMinAggregateInputType
   _max?: CategoryMaxAggregateInputType
 }
@@ -206,7 +168,6 @@ export type CategoryGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type CategoryGroupByOutputType = {
   id: string
   name: string
-  weeklyTargetHours: number
   color: string | null
   icon: string | null
   isActive: boolean
@@ -214,8 +175,6 @@ export type CategoryGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   _count: CategoryCountAggregateOutputType | null
-  _avg: CategoryAvgAggregateOutputType | null
-  _sum: CategorySumAggregateOutputType | null
   _min: CategoryMinAggregateOutputType | null
   _max: CategoryMaxAggregateOutputType | null
 }
@@ -241,7 +200,6 @@ export type CategoryWhereInput = {
   NOT?: Prisma.CategoryWhereInput | Prisma.CategoryWhereInput[]
   id?: Prisma.StringFilter<"Category"> | string
   name?: Prisma.StringFilter<"Category"> | string
-  weeklyTargetHours?: Prisma.FloatFilter<"Category"> | number
   color?: Prisma.StringNullableFilter<"Category"> | string | null
   icon?: Prisma.StringNullableFilter<"Category"> | string | null
   isActive?: Prisma.BoolFilter<"Category"> | boolean
@@ -249,13 +207,12 @@ export type CategoryWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  goals?: Prisma.GoalListRelationFilter
+  focusBlocks?: Prisma.FocusBlockListRelationFilter
 }
 
 export type CategoryOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  weeklyTargetHours?: Prisma.SortOrder
   color?: Prisma.SortOrderInput | Prisma.SortOrder
   icon?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -263,16 +220,16 @@ export type CategoryOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
-  goals?: Prisma.GoalOrderByRelationAggregateInput
+  focusBlocks?: Prisma.FocusBlockOrderByRelationAggregateInput
 }
 
 export type CategoryWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  userId_name?: Prisma.CategoryUserIdNameCompoundUniqueInput
   AND?: Prisma.CategoryWhereInput | Prisma.CategoryWhereInput[]
   OR?: Prisma.CategoryWhereInput[]
   NOT?: Prisma.CategoryWhereInput | Prisma.CategoryWhereInput[]
   name?: Prisma.StringFilter<"Category"> | string
-  weeklyTargetHours?: Prisma.FloatFilter<"Category"> | number
   color?: Prisma.StringNullableFilter<"Category"> | string | null
   icon?: Prisma.StringNullableFilter<"Category"> | string | null
   isActive?: Prisma.BoolFilter<"Category"> | boolean
@@ -280,13 +237,12 @@ export type CategoryWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  goals?: Prisma.GoalListRelationFilter
-}, "id">
+  focusBlocks?: Prisma.FocusBlockListRelationFilter
+}, "id" | "userId_name">
 
 export type CategoryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  weeklyTargetHours?: Prisma.SortOrder
   color?: Prisma.SortOrderInput | Prisma.SortOrder
   icon?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -294,10 +250,8 @@ export type CategoryOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CategoryCountOrderByAggregateInput
-  _avg?: Prisma.CategoryAvgOrderByAggregateInput
   _max?: Prisma.CategoryMaxOrderByAggregateInput
   _min?: Prisma.CategoryMinOrderByAggregateInput
-  _sum?: Prisma.CategorySumOrderByAggregateInput
 }
 
 export type CategoryScalarWhereWithAggregatesInput = {
@@ -306,7 +260,6 @@ export type CategoryScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CategoryScalarWhereWithAggregatesInput | Prisma.CategoryScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Category"> | string
   name?: Prisma.StringWithAggregatesFilter<"Category"> | string
-  weeklyTargetHours?: Prisma.FloatWithAggregatesFilter<"Category"> | number
   color?: Prisma.StringNullableWithAggregatesFilter<"Category"> | string | null
   icon?: Prisma.StringNullableWithAggregatesFilter<"Category"> | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Category"> | boolean
@@ -318,59 +271,54 @@ export type CategoryScalarWhereWithAggregatesInput = {
 export type CategoryCreateInput = {
   id?: string
   name: string
-  weeklyTargetHours: number
   color?: string | null
   icon?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCategoriesInput
-  goals?: Prisma.GoalCreateNestedManyWithoutCategoryInput
+  focusBlocks?: Prisma.FocusBlockCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUncheckedCreateInput = {
   id?: string
   name: string
-  weeklyTargetHours: number
   color?: string | null
   icon?: string | null
   isActive?: boolean
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutCategoryInput
+  focusBlocks?: Prisma.FocusBlockUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  weeklyTargetHours?: Prisma.FloatFieldUpdateOperationsInput | number
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCategoriesNestedInput
-  goals?: Prisma.GoalUpdateManyWithoutCategoryNestedInput
+  focusBlocks?: Prisma.FocusBlockUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  weeklyTargetHours?: Prisma.FloatFieldUpdateOperationsInput | number
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutCategoryNestedInput
+  focusBlocks?: Prisma.FocusBlockUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryCreateManyInput = {
   id?: string
   name: string
-  weeklyTargetHours: number
   color?: string | null
   icon?: string | null
   isActive?: boolean
@@ -382,7 +330,6 @@ export type CategoryCreateManyInput = {
 export type CategoryUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  weeklyTargetHours?: Prisma.FloatFieldUpdateOperationsInput | number
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -393,7 +340,6 @@ export type CategoryUpdateManyMutationInput = {
 export type CategoryUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  weeklyTargetHours?: Prisma.FloatFieldUpdateOperationsInput | number
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -412,10 +358,14 @@ export type CategoryOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type CategoryUserIdNameCompoundUniqueInput = {
+  userId: string
+  name: string
+}
+
 export type CategoryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  weeklyTargetHours?: Prisma.SortOrder
   color?: Prisma.SortOrder
   icon?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -424,14 +374,9 @@ export type CategoryCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type CategoryAvgOrderByAggregateInput = {
-  weeklyTargetHours?: Prisma.SortOrder
-}
-
 export type CategoryMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  weeklyTargetHours?: Prisma.SortOrder
   color?: Prisma.SortOrder
   icon?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -443,17 +388,12 @@ export type CategoryMaxOrderByAggregateInput = {
 export type CategoryMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  weeklyTargetHours?: Prisma.SortOrder
   color?: Prisma.SortOrder
   icon?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type CategorySumOrderByAggregateInput = {
-  weeklyTargetHours?: Prisma.SortOrder
 }
 
 export type CategoryScalarRelationFilter = {
@@ -503,54 +443,44 @@ export type CategoryUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.CategoryScalarWhereInput | Prisma.CategoryScalarWhereInput[]
 }
 
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
-export type CategoryCreateNestedOneWithoutGoalsInput = {
-  create?: Prisma.XOR<Prisma.CategoryCreateWithoutGoalsInput, Prisma.CategoryUncheckedCreateWithoutGoalsInput>
-  connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutGoalsInput
+export type CategoryCreateNestedOneWithoutFocusBlocksInput = {
+  create?: Prisma.XOR<Prisma.CategoryCreateWithoutFocusBlocksInput, Prisma.CategoryUncheckedCreateWithoutFocusBlocksInput>
+  connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutFocusBlocksInput
   connect?: Prisma.CategoryWhereUniqueInput
 }
 
-export type CategoryUpdateOneRequiredWithoutGoalsNestedInput = {
-  create?: Prisma.XOR<Prisma.CategoryCreateWithoutGoalsInput, Prisma.CategoryUncheckedCreateWithoutGoalsInput>
-  connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutGoalsInput
-  upsert?: Prisma.CategoryUpsertWithoutGoalsInput
+export type CategoryUpdateOneRequiredWithoutFocusBlocksNestedInput = {
+  create?: Prisma.XOR<Prisma.CategoryCreateWithoutFocusBlocksInput, Prisma.CategoryUncheckedCreateWithoutFocusBlocksInput>
+  connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutFocusBlocksInput
+  upsert?: Prisma.CategoryUpsertWithoutFocusBlocksInput
   connect?: Prisma.CategoryWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CategoryUpdateToOneWithWhereWithoutGoalsInput, Prisma.CategoryUpdateWithoutGoalsInput>, Prisma.CategoryUncheckedUpdateWithoutGoalsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CategoryUpdateToOneWithWhereWithoutFocusBlocksInput, Prisma.CategoryUpdateWithoutFocusBlocksInput>, Prisma.CategoryUncheckedUpdateWithoutFocusBlocksInput>
 }
 
 export type CategoryCreateWithoutUserInput = {
   id?: string
   name: string
-  weeklyTargetHours: number
   color?: string | null
   icon?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalCreateNestedManyWithoutCategoryInput
+  focusBlocks?: Prisma.FocusBlockCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUncheckedCreateWithoutUserInput = {
   id?: string
   name: string
-  weeklyTargetHours: number
   color?: string | null
   icon?: string | null
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutCategoryInput
+  focusBlocks?: Prisma.FocusBlockUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryCreateOrConnectWithoutUserInput = {
@@ -585,7 +515,6 @@ export type CategoryScalarWhereInput = {
   NOT?: Prisma.CategoryScalarWhereInput | Prisma.CategoryScalarWhereInput[]
   id?: Prisma.StringFilter<"Category"> | string
   name?: Prisma.StringFilter<"Category"> | string
-  weeklyTargetHours?: Prisma.FloatFilter<"Category"> | number
   color?: Prisma.StringNullableFilter<"Category"> | string | null
   icon?: Prisma.StringNullableFilter<"Category"> | string | null
   isActive?: Prisma.BoolFilter<"Category"> | boolean
@@ -594,10 +523,9 @@ export type CategoryScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Category"> | Date | string
 }
 
-export type CategoryCreateWithoutGoalsInput = {
+export type CategoryCreateWithoutFocusBlocksInput = {
   id?: string
   name: string
-  weeklyTargetHours: number
   color?: string | null
   icon?: string | null
   isActive?: boolean
@@ -606,10 +534,9 @@ export type CategoryCreateWithoutGoalsInput = {
   user: Prisma.UserCreateNestedOneWithoutCategoriesInput
 }
 
-export type CategoryUncheckedCreateWithoutGoalsInput = {
+export type CategoryUncheckedCreateWithoutFocusBlocksInput = {
   id?: string
   name: string
-  weeklyTargetHours: number
   color?: string | null
   icon?: string | null
   isActive?: boolean
@@ -618,26 +545,25 @@ export type CategoryUncheckedCreateWithoutGoalsInput = {
   updatedAt?: Date | string
 }
 
-export type CategoryCreateOrConnectWithoutGoalsInput = {
+export type CategoryCreateOrConnectWithoutFocusBlocksInput = {
   where: Prisma.CategoryWhereUniqueInput
-  create: Prisma.XOR<Prisma.CategoryCreateWithoutGoalsInput, Prisma.CategoryUncheckedCreateWithoutGoalsInput>
+  create: Prisma.XOR<Prisma.CategoryCreateWithoutFocusBlocksInput, Prisma.CategoryUncheckedCreateWithoutFocusBlocksInput>
 }
 
-export type CategoryUpsertWithoutGoalsInput = {
-  update: Prisma.XOR<Prisma.CategoryUpdateWithoutGoalsInput, Prisma.CategoryUncheckedUpdateWithoutGoalsInput>
-  create: Prisma.XOR<Prisma.CategoryCreateWithoutGoalsInput, Prisma.CategoryUncheckedCreateWithoutGoalsInput>
+export type CategoryUpsertWithoutFocusBlocksInput = {
+  update: Prisma.XOR<Prisma.CategoryUpdateWithoutFocusBlocksInput, Prisma.CategoryUncheckedUpdateWithoutFocusBlocksInput>
+  create: Prisma.XOR<Prisma.CategoryCreateWithoutFocusBlocksInput, Prisma.CategoryUncheckedCreateWithoutFocusBlocksInput>
   where?: Prisma.CategoryWhereInput
 }
 
-export type CategoryUpdateToOneWithWhereWithoutGoalsInput = {
+export type CategoryUpdateToOneWithWhereWithoutFocusBlocksInput = {
   where?: Prisma.CategoryWhereInput
-  data: Prisma.XOR<Prisma.CategoryUpdateWithoutGoalsInput, Prisma.CategoryUncheckedUpdateWithoutGoalsInput>
+  data: Prisma.XOR<Prisma.CategoryUpdateWithoutFocusBlocksInput, Prisma.CategoryUncheckedUpdateWithoutFocusBlocksInput>
 }
 
-export type CategoryUpdateWithoutGoalsInput = {
+export type CategoryUpdateWithoutFocusBlocksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  weeklyTargetHours?: Prisma.FloatFieldUpdateOperationsInput | number
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -646,10 +572,9 @@ export type CategoryUpdateWithoutGoalsInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutCategoriesNestedInput
 }
 
-export type CategoryUncheckedUpdateWithoutGoalsInput = {
+export type CategoryUncheckedUpdateWithoutFocusBlocksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  weeklyTargetHours?: Prisma.FloatFieldUpdateOperationsInput | number
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -661,7 +586,6 @@ export type CategoryUncheckedUpdateWithoutGoalsInput = {
 export type CategoryCreateManyUserInput = {
   id?: string
   name: string
-  weeklyTargetHours: number
   color?: string | null
   icon?: string | null
   isActive?: boolean
@@ -672,31 +596,28 @@ export type CategoryCreateManyUserInput = {
 export type CategoryUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  weeklyTargetHours?: Prisma.FloatFieldUpdateOperationsInput | number
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUpdateManyWithoutCategoryNestedInput
+  focusBlocks?: Prisma.FocusBlockUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  weeklyTargetHours?: Prisma.FloatFieldUpdateOperationsInput | number
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  goals?: Prisma.GoalUncheckedUpdateManyWithoutCategoryNestedInput
+  focusBlocks?: Prisma.FocusBlockUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  weeklyTargetHours?: Prisma.FloatFieldUpdateOperationsInput | number
   color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   icon?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -710,11 +631,11 @@ export type CategoryUncheckedUpdateManyWithoutUserInput = {
  */
 
 export type CategoryCountOutputType = {
-  goals: number
+  focusBlocks: number
 }
 
 export type CategoryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  goals?: boolean | CategoryCountOutputTypeCountGoalsArgs
+  focusBlocks?: boolean | CategoryCountOutputTypeCountFocusBlocksArgs
 }
 
 /**
@@ -730,15 +651,14 @@ export type CategoryCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * CategoryCountOutputType without action
  */
-export type CategoryCountOutputTypeCountGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.GoalWhereInput
+export type CategoryCountOutputTypeCountFocusBlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FocusBlockWhereInput
 }
 
 
 export type CategorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  weeklyTargetHours?: boolean
   color?: boolean
   icon?: boolean
   isActive?: boolean
@@ -746,14 +666,13 @@ export type CategorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  goals?: boolean | Prisma.Category$goalsArgs<ExtArgs>
+  focusBlocks?: boolean | Prisma.Category$focusBlocksArgs<ExtArgs>
   _count?: boolean | Prisma.CategoryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["category"]>
 
 export type CategorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  weeklyTargetHours?: boolean
   color?: boolean
   icon?: boolean
   isActive?: boolean
@@ -766,7 +685,6 @@ export type CategorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type CategorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  weeklyTargetHours?: boolean
   color?: boolean
   icon?: boolean
   isActive?: boolean
@@ -779,7 +697,6 @@ export type CategorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type CategorySelectScalar = {
   id?: boolean
   name?: boolean
-  weeklyTargetHours?: boolean
   color?: boolean
   icon?: boolean
   isActive?: boolean
@@ -788,10 +705,10 @@ export type CategorySelectScalar = {
   updatedAt?: boolean
 }
 
-export type CategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "weeklyTargetHours" | "color" | "icon" | "isActive" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
+export type CategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "color" | "icon" | "isActive" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
 export type CategoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  goals?: boolean | Prisma.Category$goalsArgs<ExtArgs>
+  focusBlocks?: boolean | Prisma.Category$focusBlocksArgs<ExtArgs>
   _count?: boolean | Prisma.CategoryCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CategoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -805,12 +722,11 @@ export type $CategoryPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Category"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
-    goals: Prisma.$GoalPayload<ExtArgs>[]
+    focusBlocks: Prisma.$FocusBlockPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
-    weeklyTargetHours: number
     color: string | null
     icon: string | null
     isActive: boolean
@@ -1212,7 +1128,7 @@ readonly fields: CategoryFieldRefs;
 export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  goals<T extends Prisma.Category$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Category$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  focusBlocks<T extends Prisma.Category$focusBlocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Category$focusBlocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FocusBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1244,7 +1160,6 @@ export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends runtime
 export interface CategoryFieldRefs {
   readonly id: Prisma.FieldRef<"Category", 'String'>
   readonly name: Prisma.FieldRef<"Category", 'String'>
-  readonly weeklyTargetHours: Prisma.FieldRef<"Category", 'Float'>
   readonly color: Prisma.FieldRef<"Category", 'String'>
   readonly icon: Prisma.FieldRef<"Category", 'String'>
   readonly isActive: Prisma.FieldRef<"Category", 'Boolean'>
@@ -1652,27 +1567,27 @@ export type CategoryDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Category.goals
+ * Category.focusBlocks
  */
-export type Category$goalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Category$focusBlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Goal
+   * Select specific fields to fetch from the FocusBlock
    */
-  select?: Prisma.GoalSelect<ExtArgs> | null
+  select?: Prisma.FocusBlockSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Goal
+   * Omit specific fields from the FocusBlock
    */
-  omit?: Prisma.GoalOmit<ExtArgs> | null
+  omit?: Prisma.FocusBlockOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.GoalInclude<ExtArgs> | null
-  where?: Prisma.GoalWhereInput
-  orderBy?: Prisma.GoalOrderByWithRelationInput | Prisma.GoalOrderByWithRelationInput[]
-  cursor?: Prisma.GoalWhereUniqueInput
+  include?: Prisma.FocusBlockInclude<ExtArgs> | null
+  where?: Prisma.FocusBlockWhereInput
+  orderBy?: Prisma.FocusBlockOrderByWithRelationInput | Prisma.FocusBlockOrderByWithRelationInput[]
+  cursor?: Prisma.FocusBlockWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.GoalScalarFieldEnum | Prisma.GoalScalarFieldEnum[]
+  distinct?: Prisma.FocusBlockScalarFieldEnum | Prisma.FocusBlockScalarFieldEnum[]
 }
 
 /**

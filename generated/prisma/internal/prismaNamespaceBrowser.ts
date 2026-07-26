@@ -53,14 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Category: 'Category',
-  Goal: 'Goal',
-  Task: 'Task',
-  Routine: 'Routine',
-  TimeBlock: 'TimeBlock',
-  TaskSession: 'TaskSession',
-  Availability: 'Availability',
-  Settings: 'Settings',
-  AIContext: 'AIContext'
+  FocusBlock: 'FocusBlock',
+  ActivitySession: 'ActivitySession'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -82,7 +76,6 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  email: 'email',
   vision: 'vision',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -94,7 +87,6 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  weeklyTargetHours: 'weeklyTargetHours',
   color: 'color',
   icon: 'icon',
   isActive: 'isActive',
@@ -106,124 +98,32 @@ export const CategoryScalarFieldEnum = {
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
 
 
-export const GoalScalarFieldEnum = {
+export const FocusBlockScalarFieldEnum = {
   id: 'id',
-  title: 'title',
+  name: 'name',
   description: 'description',
-  priority: 'priority',
-  deadline: 'deadline',
-  status: 'status',
-  isActive: 'isActive',
-  userId: 'userId',
+  weeklyTargetMinutes: 'weeklyTargetMinutes',
   categoryId: 'categoryId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
-
-
-export const TaskScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  priority: 'priority',
-  status: 'status',
-  estimatedMinutes: 'estimatedMinutes',
-  completedMinutes: 'completedMinutes',
-  order: 'order',
   userId: 'userId',
-  goalId: 'goalId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
-
-
-export const RoutineScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  frequency: 'frequency',
-  dayOfWeek: 'dayOfWeek',
-  startTime: 'startTime',
-  endTime: 'endTime',
   isActive: 'isActive',
-  userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type RoutineScalarFieldEnum = (typeof RoutineScalarFieldEnum)[keyof typeof RoutineScalarFieldEnum]
+export type FocusBlockScalarFieldEnum = (typeof FocusBlockScalarFieldEnum)[keyof typeof FocusBlockScalarFieldEnum]
 
 
-export const TimeBlockScalarFieldEnum = {
+export const ActivitySessionScalarFieldEnum = {
   id: 'id',
-  date: 'date',
-  startTime: 'startTime',
-  endTime: 'endTime',
-  type: 'type',
-  title: 'title',
-  completed: 'completed',
+  focusBlockId: 'focusBlockId',
   userId: 'userId',
-  taskId: 'taskId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TimeBlockScalarFieldEnum = (typeof TimeBlockScalarFieldEnum)[keyof typeof TimeBlockScalarFieldEnum]
-
-
-export const TaskSessionScalarFieldEnum = {
-  id: 'id',
-  taskId: 'taskId',
   startedAt: 'startedAt',
   endedAt: 'endedAt',
-  duration: 'duration',
-  wasPaused: 'wasPaused',
+  durationMinutes: 'durationMinutes',
   createdAt: 'createdAt'
 } as const
 
-export type TaskSessionScalarFieldEnum = (typeof TaskSessionScalarFieldEnum)[keyof typeof TaskSessionScalarFieldEnum]
-
-
-export const AvailabilityScalarFieldEnum = {
-  id: 'id',
-  dayOfWeek: 'dayOfWeek',
-  startTime: 'startTime',
-  endTime: 'endTime',
-  isAvailable: 'isAvailable',
-  userId: 'userId'
-} as const
-
-export type AvailabilityScalarFieldEnum = (typeof AvailabilityScalarFieldEnum)[keyof typeof AvailabilityScalarFieldEnum]
-
-
-export const SettingsScalarFieldEnum = {
-  id: 'id',
-  workHoursPerDay: 'workHoursPerDay',
-  breakMinutes: 'breakMinutes',
-  focusSessionMinutes: 'focusSessionMinutes',
-  theme: 'theme',
-  userId: 'userId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type SettingsScalarFieldEnum = (typeof SettingsScalarFieldEnum)[keyof typeof SettingsScalarFieldEnum]
-
-
-export const AIContextScalarFieldEnum = {
-  id: 'id',
-  key: 'key',
-  value: 'value',
-  userId: 'userId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type AIContextScalarFieldEnum = (typeof AIContextScalarFieldEnum)[keyof typeof AIContextScalarFieldEnum]
+export type ActivitySessionScalarFieldEnum = (typeof ActivitySessionScalarFieldEnum)[keyof typeof ActivitySessionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -232,13 +132,6 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-export const JsonNullValueInput = {
-  JsonNull: JsonNull
-} as const
-
-export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -255,13 +148,4 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-export const JsonNullValueFilter = {
-  DbNull: DbNull,
-  JsonNull: JsonNull,
-  AnyNull: AnyNull
-} as const
-
-export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

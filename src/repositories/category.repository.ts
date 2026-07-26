@@ -2,7 +2,7 @@ import { prisma } from "../config/prisma.js";
 import { Category } from "../../generated/prisma/client.js";
 
 export class CategoryRepository {
-  async findUserCategories(userId: string): Promise<Category[]> {
+  async findAll(userId: string): Promise<Category[]> {
     return prisma.category.findMany({
       where: {
         userId,
@@ -14,24 +14,49 @@ export class CategoryRepository {
     });
   }
 
-  async findByName(name: string, userId: string): Promise<Category | null> {
+  async findById(id: string, userId: string): Promise<Category | null> {
     return prisma.category.findFirst({
       where: {
-        name,
+        id,
         userId,
+        isActive: true,
       },
     });
   }
 
   async create(data: {
     name: string;
-    icon?: string;
     color?: string;
-    weeklyTargetHours: number;
+    icon?: string;
     userId: string;
   }): Promise<Category> {
     return prisma.category.create({
       data,
     });
   }
+
+  async update(
+    id: string,
+    data: {
+      name?: string;
+      color?: string;
+      icon?: string;
+    },
+  ): Promise<Category> {
+    return prisma.category.update({
+      where: { id },
+      data,
+    });
+  }
+
+  async softDelete(id: string): Promise<Category> {
+    return prisma.category.update({
+      where: { id },
+      data: {
+        isActive: false,
+      },
+    });
+  }
 }
+
+export const categoryRepository = new CategoryRepository();

@@ -6,6 +6,17 @@ import {
 import { AppError } from "../shared/errors/AppError.js";
 import { GoalRepository } from "../repositories/goal.repository.js";
 
+
+interface UpdateGoalDto {
+  title?: string;
+  description?: string;
+  priority?: GoalPriority;
+  deadline?: Date | null;
+  status?: GoalStatus;
+  categoryId?: string;
+  isActive?: boolean;
+}
+
 export class GoalService {
   private goalRepository = new GoalRepository();
 
@@ -49,7 +60,7 @@ export class GoalService {
   async updateGoal(
     id: string,
     userId: string,
-    data: Partial<Goal>,
+    data: UpdateGoalDto,
   ): Promise<Goal> {
     await this.getGoalById(id, userId);
 

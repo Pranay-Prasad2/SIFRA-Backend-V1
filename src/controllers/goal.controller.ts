@@ -28,7 +28,7 @@ export const getGoal = asyncHandler(async (req: Request, res: Response) => {
     req.user.id,
   );
 
-  res.json({
+  res.json({  
     success: true,
     data: goal,
   });
@@ -70,3 +70,4 @@ export const deleteGoal = asyncHandler(async (req: Request, res: Response) => {
     message: "Goal deleted successfully",
   });
 });
+
